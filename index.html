@@ -10,19 +10,24 @@
     :root {
       --bg:        #ffffff;
       --bg-2:      #f5f5f4;
-      --bg-3:      #eeede9;
+      --bg-3:      #eeecea;
       --text:      #1a1a18;
       --text-2:    #5a5a56;
       --text-3:    #9a9a94;
-      --border:    rgba(0,0,0,0.10);
-      --border-2:  rgba(0,0,0,0.18);
+      --border:    rgba(0,0,0,0.09);
+      --border-2:  rgba(0,0,0,0.16);
       --accent:    #1a1a18;
       --green:     #1d7a4f;
       --green-bg:  #eaf3de;
+      --green-t:   #3b6d11;
       --red:       #a32d2d;
       --red-bg:    #fcebeb;
       --blue:      #185fa5;
-      --blue-light:#e6f1fb;
+      --blue-bg:   #e6f1fb;
+      --amber:     #854f0b;
+      --amber-bg:  #faeeda;
+      --purple:    #534ab7;
+      --purple-bg: #eeedfe;
       --radius:    10px;
       --radius-sm: 6px;
       --mono:      'Courier New', Courier, monospace;
@@ -30,21 +35,26 @@
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg:       #1c1c1a;
-        --bg-2:     #252523;
-        --bg-3:     #2e2e2b;
-        --text:     #f0efe8;
-        --text-2:   #a8a8a0;
-        --text-3:   #686860;
-        --border:   rgba(255,255,255,0.10);
-        --border-2: rgba(255,255,255,0.18);
-        --accent:   #f0efe8;
-        --green:    #5dcaa5;
-        --green-bg: #04342c;
-        --red:      #f09595;
-        --red-bg:   #501313;
-        --blue:     #85b7eb;
-        --blue-light:#042c53;
+        --bg:        #1c1c1a;
+        --bg-2:      #252523;
+        --bg-3:      #2e2e2b;
+        --text:      #f0efe8;
+        --text-2:    #a8a8a0;
+        --text-3:    #686860;
+        --border:    rgba(255,255,255,0.09);
+        --border-2:  rgba(255,255,255,0.16);
+        --accent:    #f0efe8;
+        --green:     #5dcaa5;
+        --green-bg:  #04342c;
+        --green-t:   #9fe1cb;
+        --red:       #f09595;
+        --red-bg:    #501313;
+        --blue:      #85b7eb;
+        --blue-bg:   #042c53;
+        --amber:     #ef9f27;
+        --amber-bg:  #412402;
+        --purple:    #afa9ec;
+        --purple-bg: #26215c;
       }
     }
 
@@ -53,20 +63,15 @@
       background: var(--bg-2);
       color: var(--text);
       min-height: 100vh;
-      padding: 2rem 1rem;
+      padding: 2rem 1rem 4rem;
       line-height: 1.6;
     }
 
-    .page { max-width: 860px; margin: 0 auto; }
+    .page { max-width: 960px; margin: 0 auto; }
 
     header { margin-bottom: 2rem; }
-    header h1 {
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-    header p { font-size: 14px; color: var(--text-2); }
+    header h1 { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+    header p  { font-size: 14px; color: var(--text-2); }
 
     .card {
       background: var(--bg);
@@ -77,211 +82,182 @@
     }
 
     .section-label {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-3);
-      margin-bottom: 14px;
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--text-3); margin-bottom: 14px;
     }
 
     .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-
-    @media (max-width: 600px) {
-      .grid2, .grid3 { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 600px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
 
     .field { display: flex; flex-direction: column; gap: 5px; }
+    label { font-size: 12px; font-weight: 500; color: var(--text-2); }
 
-    label {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text-2);
+    input[type="text"], input[type="password"], input[type="date"] {
+      width: 100%; padding: 8px 12px; font-size: 14px;
+      color: var(--text); background: var(--bg);
+      border: 0.5px solid var(--border-2); border-radius: var(--radius-sm);
+      outline: none; font-family: inherit; transition: border-color 0.15s;
     }
-
-    input[type="text"],
-    input[type="password"],
-    input[type="date"] {
-      width: 100%;
-      padding: 8px 12px;
-      font-size: 14px;
-      color: var(--text);
-      background: var(--bg);
-      border: 0.5px solid var(--border-2);
-      border-radius: var(--radius-sm);
-      outline: none;
-      transition: border-color 0.15s;
-      font-family: inherit;
-    }
-
-    input[type="text"]:focus,
-    input[type="password"]:focus,
-    input[type="date"]:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(26,26,24,0.08);
-    }
+    input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(26,26,24,0.07); }
 
     .token-wrap { position: relative; }
     .token-wrap input { padding-right: 52px; font-family: var(--mono); font-size: 13px; }
     .eye-btn {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text-3);
-      padding: 2px 4px;
-      font-family: inherit;
+      position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: pointer;
+      font-size: 12px; font-weight: 500; color: var(--text-3); font-family: inherit;
     }
     .eye-btn:hover { color: var(--text-2); }
 
     .hint { font-size: 11px; color: var(--text-3); margin-top: 6px; line-height: 1.5; }
-    .hint code {
-      font-family: var(--mono);
-      font-size: 11px;
-      background: var(--bg-3);
-      padding: 1px 4px;
-      border-radius: 3px;
-    }
+    .hint code { font-family: var(--mono); font-size: 11px; background: var(--bg-3); padding: 1px 4px; border-radius: 3px; }
 
     .run-btn {
-      width: 100%;
-      padding: 11px;
-      background: var(--accent);
-      color: var(--bg);
-      border: none;
-      border-radius: var(--radius-sm);
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      font-family: inherit;
-      transition: opacity 0.15s;
+      width: 100%; padding: 11px; background: var(--accent); color: var(--bg);
+      border: none; border-radius: var(--radius-sm);
+      font-size: 14px; font-weight: 500; cursor: pointer; font-family: inherit;
     }
     .run-btn:hover:not(:disabled) { opacity: 0.82; }
     .run-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
-    .status {
-      text-align: center;
-      font-size: 13px;
-      color: var(--text-2);
-      margin-top: 10px;
-      min-height: 20px;
-    }
+    .status { text-align: center; font-size: 13px; color: var(--text-2); margin-top: 10px; min-height: 20px; }
     .status.err { color: var(--red); }
     .status.ok  { color: var(--green); }
 
     .spinner {
-      display: inline-block;
-      width: 11px; height: 11px;
-      border: 2px solid var(--border-2);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin 0.6s linear infinite;
-      margin-right: 6px;
-      vertical-align: middle;
+      display: inline-block; width: 11px; height: 11px;
+      border: 2px solid var(--border-2); border-top-color: var(--accent);
+      border-radius: 50%; animation: spin 0.6s linear infinite;
+      margin-right: 6px; vertical-align: middle;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Results */
     #results { margin-top: 1.5rem; display: none; }
 
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 1rem;
-    }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 1rem; }
+    @media (max-width: 600px) { .metrics { grid-template-columns: 1fr 1fr; } }
 
-    @media (max-width: 500px) { .metrics { grid-template-columns: 1fr; } }
-
-    .metric {
-      background: var(--bg);
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius);
-      padding: 14px 16px;
-    }
+    .metric { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
     .metric .val { font-size: 22px; font-weight: 600; color: var(--text); }
     .metric .lbl { font-size: 12px; color: var(--text-3); margin-top: 3px; }
 
-    .export-row {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 1rem;
-    }
+    .toolbar { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; }
     .exp-btn {
-      flex: 1;
-      padding: 8px 12px;
-      background: var(--bg);
-      border: 0.5px solid var(--border-2);
-      border-radius: var(--radius-sm);
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text);
-      cursor: pointer;
-      font-family: inherit;
-      transition: background 0.12s;
+      flex: 1; min-width: 120px; padding: 8px 12px;
+      background: var(--bg); border: 0.5px solid var(--border-2);
+      border-radius: var(--radius-sm); font-size: 13px; font-weight: 500;
+      color: var(--text); cursor: pointer; font-family: inherit;
     }
     .exp-btn:hover { background: var(--bg-3); }
 
-    .table-wrap {
-      background: var(--bg);
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      overflow-x: auto;
+    .month-group { margin-bottom: 1.5rem; }
+    .month-header {
+      font-size: 13px; font-weight: 600; color: var(--text-2);
+      padding: 6px 0 8px; border-bottom: 0.5px solid var(--border-2);
+      margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+    }
+    .month-count {
+      font-size: 11px; font-weight: 500; background: var(--bg-3);
+      color: var(--text-3); padding: 2px 8px; border-radius: 99px;
     }
 
-    table { width: 100%; border-collapse: collapse; font-size: 13px; }
-
-    th {
-      background: var(--bg-2);
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-3);
-      padding: 9px 14px;
-      text-align: left;
-      border-bottom: 0.5px solid var(--border);
-      white-space: nowrap;
+    .commit-card {
+      background: var(--bg); border: 0.5px solid var(--border);
+      border-radius: var(--radius); margin-bottom: 8px; overflow: hidden;
     }
-
-    td {
-      padding: 10px 14px;
-      border-bottom: 0.5px solid var(--border);
-      color: var(--text);
-      vertical-align: middle;
+    .commit-head {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 14px; cursor: pointer; user-select: none;
     }
-    tr:last-child td { border-bottom: none; }
-    tr:hover td { background: var(--bg-2); }
+    .commit-head:hover { background: var(--bg-2); }
 
-    .sha-link {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--blue);
-      text-decoration: none;
-      white-space: nowrap;
+    .commit-sha {
+      font-family: var(--mono); font-size: 12px; color: var(--blue);
+      text-decoration: none; white-space: nowrap; margin-top: 2px; flex-shrink: 0;
     }
-    .sha-link:hover { text-decoration: underline; }
+    .commit-sha:hover { text-decoration: underline; }
 
-    .date-cell { white-space: nowrap; font-size: 12px; color: var(--text-2); }
-    .msg-cell  { max-width: 340px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .author-cell { white-space: nowrap; }
+    .commit-main { flex: 1; min-width: 0; }
+    .commit-msg {
+      font-size: 14px; font-weight: 500; color: var(--text);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .commit-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; align-items: center; }
+    .meta-item { font-size: 12px; color: var(--text-2); }
 
     .badge {
-      display: inline-block;
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 99px;
-      background: var(--blue-light);
-      color: var(--blue);
-      font-weight: 500;
+      display: inline-flex; align-items: center;
+      font-size: 11px; font-weight: 500; padding: 2px 8px;
+      border-radius: 99px; white-space: nowrap; text-decoration: none;
     }
+    .badge-blue   { background: var(--blue-bg);   color: var(--blue); }
+    .badge-green  { background: var(--green-bg);  color: var(--green-t); }
+    .badge-amber  { background: var(--amber-bg);  color: var(--amber); }
+    .badge-purple { background: var(--purple-bg); color: var(--purple); }
+    .badge-red    { background: var(--red-bg);    color: var(--red); }
+
+    .expand-icon { font-size: 11px; color: var(--text-3); flex-shrink: 0; margin-top: 3px; transition: transform 0.18s; }
+    .commit-card.open .expand-icon { transform: rotate(90deg); }
+
+    .commit-detail {
+      border-top: 0.5px solid var(--border); padding: 14px;
+      display: none; background: var(--bg-2);
+    }
+    .commit-card.open .commit-detail { display: block; }
+
+    .detail-section { margin-bottom: 14px; }
+    .detail-section:last-child { margin-bottom: 0; }
+    .detail-label {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.05em; color: var(--text-3); margin-bottom: 7px;
+    }
+
+    .full-msg {
+      font-size: 12px; color: var(--text); line-height: 1.6;
+      background: var(--bg); border: 0.5px solid var(--border);
+      border-radius: var(--radius-sm); padding: 10px 12px;
+      white-space: pre-wrap; font-family: var(--mono); overflow-x: auto;
+    }
+
+    .file-list { display: flex; flex-direction: column; gap: 4px; }
+    .file-row {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; font-family: var(--mono);
+      background: var(--bg); border: 0.5px solid var(--border);
+      border-radius: var(--radius-sm); padding: 6px 10px;
+    }
+    .file-name { flex: 1; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .file-status {
+      font-size: 10px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.04em; padding: 1px 6px; border-radius: 3px; flex-shrink: 0;
+    }
+    .fs-added    { background: var(--green-bg); color: var(--green-t); }
+    .fs-modified { background: var(--blue-bg);  color: var(--blue); }
+    .fs-removed  { background: var(--red-bg);   color: var(--red); }
+    .fs-renamed  { background: var(--amber-bg); color: var(--amber); }
+    .file-changes { font-size: 11px; white-space: nowrap; flex-shrink: 0; }
+    .add-c { color: var(--green); }
+    .del-c { color: var(--red); }
+
+    .comments-list { display: flex; flex-direction: column; gap: 8px; }
+    .comment-item {
+      background: var(--bg); border: 0.5px solid var(--border);
+      border-radius: var(--radius-sm); padding: 10px 12px;
+    }
+    .comment-author { font-size: 12px; font-weight: 500; color: var(--text-2); margin-bottom: 4px; }
+    .comment-body   { font-size: 13px; color: var(--text); white-space: pre-wrap; }
+
+    .pr-item {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--blue); text-decoration: none;
+      background: var(--blue-bg); padding: 7px 12px;
+      border-radius: var(--radius-sm); margin-right: 8px; margin-bottom: 6px;
+    }
+    .pr-item:hover { text-decoration: underline; }
+
+    .no-data { font-size: 12px; color: var(--text-3); font-style: italic; }
   </style>
 </head>
 <body>
@@ -289,10 +265,9 @@
 
   <header>
     <h1>GitHub commit extractor</h1>
-    <p>Fetch commits for a specific author, repo, and date range — runs entirely in your browser.</p>
+    <p>Detailed commit history — files changed, branches, PR links, and comments. Grouped by month.</p>
   </header>
 
-  <!-- Token -->
   <div class="card">
     <div class="section-label">Authentication</div>
     <div class="field">
@@ -303,16 +278,14 @@
       </div>
     </div>
     <p class="hint">
-      Generate at github.com → Settings → Developer Settings → Personal Access Tokens (classic).
-      Needs <code>repo</code> scope for private repos, or <code>public_repo</code> for public ones.
-      Your token is never sent anywhere except directly to the GitHub API.
+      github.com → Settings → Developer Settings → Personal Access Tokens (classic).
+      Needs <code>repo</code> scope for private repos. Your token never leaves your browser.
     </p>
   </div>
 
-  <!-- Repo & Author -->
   <div class="card">
     <div class="section-label">Repository &amp; author</div>
-    <div class="grid3" style="margin-bottom: 14px;">
+    <div class="grid3" style="margin-bottom:14px">
       <div class="field">
         <label for="owner">Owner</label>
         <input type="text" id="owner" placeholder="org or username" />
@@ -341,67 +314,64 @@
   <button class="run-btn" id="runBtn" onclick="fetchCommits()">Fetch commits</button>
   <p class="status" id="status"></p>
 
-  <!-- Results -->
   <div id="results">
     <div class="metrics">
-      <div class="metric">
-        <div class="val" id="mTotal">0</div>
-        <div class="lbl">Total commits</div>
-      </div>
-      <div class="metric">
-        <div class="val" id="mFirst">—</div>
-        <div class="lbl">First commit</div>
-      </div>
-      <div class="metric">
-        <div class="val" id="mLast">—</div>
-        <div class="lbl">Last commit</div>
-      </div>
+      <div class="metric"><div class="val" id="mTotal">0</div><div class="lbl">Commits</div></div>
+      <div class="metric"><div class="val" id="mFiles">0</div><div class="lbl">Files changed</div></div>
+      <div class="metric"><div class="val" id="mAdded">0</div><div class="lbl">Lines added</div></div>
+      <div class="metric"><div class="val" id="mDeleted">0</div><div class="lbl">Lines deleted</div></div>
     </div>
 
-    <div class="export-row">
+    <div class="toolbar">
       <button class="exp-btn" onclick="exportCSV()">⬇ Export CSV</button>
       <button class="exp-btn" onclick="exportJSON()">⬇ Export JSON</button>
-      <button class="exp-btn" onclick="copyTable()">⎘ Copy as TSV</button>
+      <button class="exp-btn" onclick="expandAll()">Expand all</button>
+      <button class="exp-btn" onclick="collapseAll()">Collapse all</button>
     </div>
 
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>SHA</th>
-            <th>Date</th>
-            <th>Time (UTC)</th>
-            <th>Author</th>
-            <th>Message</th>
-          </tr>
-        </thead>
-        <tbody id="tbody"></tbody>
-      </table>
-    </div>
+    <div id="commitList"></div>
   </div>
 
 </div>
-
 <script>
   let allCommits = [];
+  let detailCache = {};
 
-  // Default dates
-  const today = new Date().toISOString().slice(0, 10);
-  const jan1  = today.slice(0, 4) + '-01-01';
+  const today = new Date().toISOString().slice(0,10);
   document.getElementById('until').value = today;
-  document.getElementById('since').value = jan1;
+  document.getElementById('since').value = today.slice(0,4) + '-01-01';
 
   function toggleEye() {
     const inp = document.getElementById('token');
     const btn = document.getElementById('eyeBtn');
-    if (inp.type === 'password') { inp.type = 'text';     btn.textContent = 'hide'; }
-    else                         { inp.type = 'password'; btn.textContent = 'show'; }
+    inp.type = inp.type === 'password' ? 'text' : 'password';
+    btn.textContent = inp.type === 'password' ? 'show' : 'hide';
   }
 
   function setStatus(msg, type) {
     const el = document.getElementById('status');
     el.innerHTML = msg;
     el.className = 'status' + (type ? ' ' + type : '');
+  }
+
+  function ghHeaders() {
+    return {
+      'Authorization': `Bearer ${document.getElementById('token').value.trim()}`,
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28'
+    };
+  }
+
+  async function ghGet(url) {
+    const res = await fetch(url, { headers: ghHeaders() });
+    if (res.status === 401) throw new Error('Authentication failed — check your token.');
+    if (res.status === 404) throw new Error('Resource not found: ' + url);
+    if (res.status === 403) throw new Error('Rate limit hit or insufficient token permissions.');
+    if (!res.ok) {
+      let e; try { e = await res.json(); } catch(_) {}
+      throw new Error((e && e.message) || 'HTTP ' + res.status);
+    }
+    return res.json();
   }
 
   async function fetchCommits() {
@@ -415,139 +385,275 @@
     if (!token || !owner || !repo || !author || !since || !until) {
       setStatus('Please fill in all fields.', 'err'); return;
     }
-    if (since > until) {
-      setStatus('Start date must be before end date.', 'err'); return;
-    }
+    if (since > until) { setStatus('Start date must be before end date.', 'err'); return; }
 
     const btn = document.getElementById('runBtn');
     btn.disabled = true;
     document.getElementById('results').style.display = 'none';
-    allCommits = [];
+    allCommits = []; detailCache = {};
 
-    const headers = {
-      'Authorization': `Bearer ${token}`,
-      'Accept': 'application/vnd.github+json',
-      'X-GitHub-Api-Version': '2022-11-28'
-    };
-
-    let page = 1;
+    const base = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`;
 
     try {
+      // 1. Fetch all commit summaries
+      let page = 1;
       while (true) {
-        setStatus(`<span class="spinner"></span>Fetching page ${page}… (${allCommits.length} commits so far)`);
-
-        const url = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/commits?` +
-          `author=${encodeURIComponent(author)}&since=${since}T00:00:00Z&until=${until}T23:59:59Z&per_page=100&page=${page}`;
-
-        const res = await fetch(url, { headers });
-
+        setStatus(`<span class="spinner"></span>Fetching commits — page ${page} (${allCommits.length} so far)`);
+        const url = `${base}/commits?author=${encodeURIComponent(author)}&since=${since}T00:00:00Z&until=${until}T23:59:59Z&per_page=100&page=${page}`;
+        const res = await fetch(url, { headers: ghHeaders() });
         if (res.status === 401) throw new Error('Authentication failed — check your token.');
-        if (res.status === 404) throw new Error(`Repo not found: ${owner}/${repo}. Check owner and repo name.`);
-        if (res.status === 403) throw new Error('Rate limit hit or insufficient permissions. Check your token scope.');
-        if (!res.ok) {
-          let msg = `GitHub API error (HTTP ${res.status})`;
-          try { const e = await res.json(); if (e.message) msg = e.message; } catch(_) {}
-          throw new Error(msg);
-        }
-
+        if (res.status === 404) throw new Error(`Repo not found: ${owner}/${repo}`);
+        if (res.status === 403) throw new Error('Rate limit hit or insufficient permissions.');
+        if (!res.ok) { let e; try { e = await res.json(); } catch(_){} throw new Error((e&&e.message)||`HTTP ${res.status}`); }
         const data = await res.json();
-        if (!Array.isArray(data) || data.length === 0) break;
-
+        if (!Array.isArray(data) || !data.length) break;
         allCommits = allCommits.concat(data);
-
-        const linkHeader = res.headers.get('Link') || '';
-        if (!linkHeader.includes('rel="next"')) break;
+        if (!(res.headers.get('Link') || '').includes('rel="next"')) break;
         page++;
       }
 
       if (!allCommits.length) {
-        setStatus(`No commits found for @${author} in ${owner}/${repo} between ${since} and ${until}.`, 'err');
-        btn.disabled = false;
-        return;
+        setStatus(`No commits found for @${author} in that date range.`, 'err');
+        btn.disabled = false; return;
       }
 
-      renderResults();
-      setStatus(`Done — ${allCommits.length} commit${allCommits.length !== 1 ? 's' : ''} fetched successfully.`, 'ok');
+      // 2. Fetch full commit detail (files + stats) in batches of 8
+      const BATCH = 8;
+      for (let i = 0; i < allCommits.length; i += BATCH) {
+        setStatus(`<span class="spinner"></span>Loading file details… ${Math.min(i+BATCH, allCommits.length)} / ${allCommits.length}`);
+        const batch = allCommits.slice(i, i + BATCH);
+        await Promise.all(batch.map(async c => {
+          try { detailCache[c.sha] = await ghGet(`${base}/commits/${c.sha}`); }
+          catch(_) { detailCache[c.sha] = {}; }
+        }));
+      }
 
-    } catch (err) {
+      // 3. Fetch PR associations
+      for (let i = 0; i < allCommits.length; i += BATCH) {
+        setStatus(`<span class="spinner"></span>Looking up pull requests… ${Math.min(i+BATCH, allCommits.length)} / ${allCommits.length}`);
+        const batch = allCommits.slice(i, i + BATCH);
+        await Promise.all(batch.map(async c => {
+          try {
+            const prs = await ghGet(`${base}/commits/${c.sha}/pulls`);
+            detailCache[c.sha]._prs = prs;
+          } catch(_) { detailCache[c.sha]._prs = []; }
+        }));
+      }
+
+      // 4. Fetch commit comments
+      for (let i = 0; i < allCommits.length; i += BATCH) {
+        setStatus(`<span class="spinner"></span>Loading comments… ${Math.min(i+BATCH, allCommits.length)} / ${allCommits.length}`);
+        const batch = allCommits.slice(i, i + BATCH);
+        await Promise.all(batch.map(async c => {
+          try {
+            const comments = await ghGet(`${base}/commits/${c.sha}/comments`);
+            detailCache[c.sha]._comments = comments;
+          } catch(_) { detailCache[c.sha]._comments = []; }
+        }));
+      }
+
+      renderAll();
+      setStatus(`Done — ${allCommits.length} commits with full details loaded.`, 'ok');
+
+    } catch(err) {
       setStatus(err.message, 'err');
     }
-
     btn.disabled = false;
   }
 
-  function fmtDate(iso) { return iso ? iso.slice(0, 10) : ''; }
-  function fmtTime(iso) { return iso ? iso.slice(11, 19) : ''; }
-
-  function escHtml(s) {
-    return String(s || '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
+  function fmtDate(iso)  { return iso ? iso.slice(0,10) : ''; }
+  function fmtTime(iso)  { return iso ? iso.slice(11,19) : ''; }
+  function fmtMonth(iso) {
+    if (!iso) return 'Unknown';
+    const d = new Date(iso);
+    return d.toLocaleString('default', { month: 'long', year: 'numeric' });
+  }
+  function esc(s) {
+    return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  function fileStatusClass(s) {
+    if (s==='added')   return 'fs-added';
+    if (s==='removed') return 'fs-removed';
+    if (s==='renamed') return 'fs-renamed';
+    return 'fs-modified';
   }
 
-  function renderResults() {
-    const dates = allCommits.map(c => c.commit.author.date).sort();
-    document.getElementById('mTotal').textContent = allCommits.length;
-    document.getElementById('mFirst').textContent = fmtDate(dates[0]);
-    document.getElementById('mLast').textContent  = fmtDate(dates[dates.length - 1]);
-
-    const tbody = document.getElementById('tbody');
-    tbody.innerHTML = '';
-
+  function renderAll() {
+    let totalFiles=0, totalAdded=0, totalDeleted=0;
     allCommits.forEach(c => {
-      const sha   = c.sha.slice(0, 7);
-      const url   = c.html_url || '#';
-      const date  = fmtDate(c.commit.author.date);
-      const time  = fmtTime(c.commit.author.date);
-      const name  = c.commit.author.name || '';
-      const login = (c.author || {}).login || '';
-      const msg   = (c.commit.message || '').split('\n')[0];
+      const d = detailCache[c.sha] || {};
+      totalFiles   += (d.files||[]).length;
+      totalAdded   += (d.stats||{}).additions || 0;
+      totalDeleted += (d.stats||{}).deletions || 0;
+    });
+    document.getElementById('mTotal').textContent   = allCommits.length;
+    document.getElementById('mFiles').textContent   = totalFiles;
+    document.getElementById('mAdded').textContent   = '+' + totalAdded.toLocaleString();
+    document.getElementById('mDeleted').textContent = '-' + totalDeleted.toLocaleString();
 
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td><a class="sha-link" href="${escHtml(url)}" target="_blank" rel="noopener">${escHtml(sha)}</a></td>
-        <td class="date-cell">${escHtml(date)}</td>
-        <td class="date-cell">${escHtml(time)}</td>
-        <td class="author-cell">
-          ${escHtml(name)}
-          ${login ? `<span class="badge" style="margin-left:6px">@${escHtml(login)}</span>` : ''}
-        </td>
-        <td><div class="msg-cell" title="${escHtml(msg)}">${escHtml(msg)}</div></td>
-      `;
-      tbody.appendChild(tr);
+    // Group by month
+    const groups = {};
+    const order  = [];
+    allCommits.forEach(c => {
+      const key = fmtMonth(c.commit.author.date);
+      if (!groups[key]) { groups[key] = []; order.push(key); }
+      groups[key].push(c);
+    });
+
+    const list = document.getElementById('commitList');
+    list.innerHTML = '';
+
+    order.forEach(month => {
+      const commits = groups[month];
+      const grpEl = document.createElement('div');
+      grpEl.className = 'month-group';
+
+      let html = `<div class="month-header">${esc(month)}<span class="month-count">${commits.length} commit${commits.length!==1?'s':''}</span></div>`;
+
+      commits.forEach(c => {
+        const d        = detailCache[c.sha] || {};
+        const files    = d.files      || [];
+        const stats    = d.stats      || {};
+        const prs      = d._prs       || [];
+        const comments = d._comments  || [];
+
+        const sha7     = c.sha.slice(0,7);
+        const date     = fmtDate(c.commit.author.date);
+        const time     = fmtTime(c.commit.author.date);
+        const name     = c.commit.author.name || '';
+        const login    = (c.author||{}).login || '';
+        const msgLines = (c.commit.message||'').split('\n');
+        const msgFirst = msgLines[0];
+
+        const branch   = prs.length && prs[0].head ? prs[0].head.ref : '';
+
+        // badges
+        const branchBadge   = branch   ? `<span class="badge badge-purple">&#8627; ${esc(branch)}</span>` : '';
+        const prBadges      = prs.map(pr => `<a class="badge badge-blue" href="${esc(pr.html_url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">PR #${pr.number}</a>`).join('');
+        const commentBadge  = comments.length ? `<span class="badge badge-amber">${comments.length} comment${comments.length!==1?'s':''}</span>` : '';
+        const addDel        = (stats.additions||stats.deletions) ? `<span class="meta-item"><span class="add-c">+${(stats.additions||0).toLocaleString()}</span> <span class="del-c">-${(stats.deletions||0).toLocaleString()}</span></span>` : '';
+        const fileCount     = files.length ? `<span class="meta-item">${files.length} file${files.length!==1?'s':''}</span>` : '';
+
+        // files detail
+        const filesHtml = files.length
+          ? files.map(f => `
+              <div class="file-row">
+                <span class="file-status ${fileStatusClass(f.status)}">${esc(f.status||'modified')}</span>
+                <span class="file-name" title="${esc(f.filename)}">${esc(f.filename)}</span>
+                <span class="file-changes"><span class="add-c">+${f.additions||0}</span> <span class="del-c">-${f.deletions||0}</span></span>
+              </div>`).join('')
+          : '<p class="no-data">No file data available.</p>';
+
+        // PR detail
+        const prsHtml = prs.length
+          ? prs.map(pr => `
+              <a class="pr-item" href="${esc(pr.html_url)}" target="_blank" rel="noopener">
+                <strong>#${pr.number}</strong> ${esc(pr.title)}
+                <span class="badge ${pr.state==='open'?'badge-green':'badge-blue'}">${esc(pr.state)}</span>
+              </a>`).join('')
+          : '<p class="no-data">No pull requests associated with this commit.</p>';
+
+        // comments detail
+        const commentsHtml = comments.length
+          ? comments.map(cm => `
+              <div class="comment-item">
+                <div class="comment-author">@${esc((cm.user||{}).login||'unknown')} &middot; ${fmtDate(cm.created_at)} ${fmtTime(cm.created_at)} UTC</div>
+                <div class="comment-body">${esc(cm.body)}</div>
+              </div>`).join('')
+          : '<p class="no-data">No comments on this commit.</p>';
+
+        const fullMsgSection = msgLines.slice(1).join('\n').trim()
+          ? `<div class="detail-section">
+               <div class="detail-label">Full commit message</div>
+               <pre class="full-msg">${esc(c.commit.message)}</pre>
+             </div>`
+          : '';
+
+        html += `
+          <div class="commit-card" id="card-${esc(c.sha)}">
+            <div class="commit-head" onclick="toggleCard(this.parentElement)">
+              <a class="commit-sha" href="${esc(c.html_url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${esc(sha7)}</a>
+              <div class="commit-main">
+                <div class="commit-msg" title="${esc(msgFirst)}">${esc(msgFirst)}</div>
+                <div class="commit-meta">
+                  <span class="meta-item">${esc(date)} ${esc(time)} UTC</span>
+                  <span class="meta-item">${esc(name)}${login ? ' &middot; @'+esc(login) : ''}</span>
+                  ${addDel}
+                  ${fileCount}
+                  ${branchBadge}
+                  ${prBadges}
+                  ${commentBadge}
+                </div>
+              </div>
+              <span class="expand-icon">&#9654;</span>
+            </div>
+            <div class="commit-detail">
+              ${fullMsgSection}
+              <div class="detail-section">
+                <div class="detail-label">Files changed (${files.length})</div>
+                <div class="file-list">${filesHtml}</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-label">Pull requests</div>
+                <div>${prsHtml}</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-label">Commit comments (${comments.length})</div>
+                <div class="comments-list">${commentsHtml}</div>
+              </div>
+            </div>
+          </div>`;
+      });
+
+      grpEl.innerHTML = html;
+      list.appendChild(grpEl);
     });
 
     document.getElementById('results').style.display = 'block';
   }
 
-  function getRows() {
-    return allCommits.map(c => ({
-      sha:          c.sha.slice(0, 7),
-      full_sha:     c.sha,
-      date:         fmtDate(c.commit.author.date),
-      time_utc:     fmtTime(c.commit.author.date),
-      author_name:  c.commit.author.name  || '',
-      author_email: c.commit.author.email || '',
-      github_login: (c.author || {}).login || '',
-      message:      (c.commit.message || '').split('\n')[0],
-      full_message: c.commit.message || '',
-      url:          c.html_url || ''
-    }));
+  function toggleCard(card) { card.classList.toggle('open'); }
+  function expandAll()      { document.querySelectorAll('.commit-card').forEach(c => c.classList.add('open')); }
+  function collapseAll()    { document.querySelectorAll('.commit-card').forEach(c => c.classList.remove('open')); }
+
+  function getExportRows() {
+    return allCommits.map(c => {
+      const d        = detailCache[c.sha] || {};
+      const prs      = d._prs      || [];
+      const comments = d._comments || [];
+      const branch   = prs.length && prs[0].head ? prs[0].head.ref : '';
+      return {
+        sha:           c.sha.slice(0,7),
+        full_sha:      c.sha,
+        date:          fmtDate(c.commit.author.date),
+        time_utc:      fmtTime(c.commit.author.date),
+        author_name:   c.commit.author.name  || '',
+        author_email:  c.commit.author.email || '',
+        github_login:  (c.author||{}).login  || '',
+        message:       (c.commit.message||'').split('\n')[0],
+        lines_added:   (d.stats||{}).additions || 0,
+        lines_deleted: (d.stats||{}).deletions || 0,
+        file_count:    (d.files||[]).length,
+        files_changed: (d.files||[]).map(f=>f.filename).join('; '),
+        branch:        branch,
+        pr_numbers:    prs.map(p=>'#'+p.number).join('; '),
+        pr_titles:     prs.map(p=>p.title).join('; '),
+        pr_urls:       prs.map(p=>p.html_url).join('; '),
+        comment_count: comments.length,
+        url:           c.html_url || ''
+      };
+    });
   }
 
   function exportCSV() {
-    const rows = getRows();
-    const cols = ['sha','date','time_utc','author_name','author_email','github_login','message','url','full_sha'];
-    const header = cols.join(',');
-    const lines  = rows.map(r => cols.map(k => `"${(r[k] || '').replace(/"/g, '""')}"`).join(','));
-    const owner  = document.getElementById('owner').value.trim();
+    const rows  = getExportRows();
+    const cols  = Object.keys(rows[0]);
+    const lines = [cols.join(','), ...rows.map(r => cols.map(k=>`"${String(r[k]||'').replace(/"/g,'""')}"`).join(','))];
     const repo   = document.getElementById('repo').value.trim();
     const author = document.getElementById('author').value.trim();
     const since  = document.getElementById('since').value;
     const until  = document.getElementById('until').value;
-    download([header, ...lines].join('\n'), `commits_${repo}_${author}_${since}_${until}.csv`, 'text/csv');
+    dl(lines.join('\n'), `commits_${repo}_${author}_${since}_${until}.csv`, 'text/csv');
   }
 
   function exportJSON() {
@@ -557,24 +663,14 @@
     const until  = document.getElementById('until').value;
     const payload = {
       meta: { repo, author, since, until, total: allCommits.length, exported_at: new Date().toISOString() },
-      commits: getRows()
+      commits: getExportRows()
     };
-    download(JSON.stringify(payload, null, 2), `commits_${repo}_${author}_${since}_${until}.json`, 'application/json');
+    dl(JSON.stringify(payload, null, 2), `commits_${repo}_${author}_${since}_${until}.json`, 'application/json');
   }
 
-  function copyTable() {
-    const rows = getRows();
-    const cols = ['sha','date','time_utc','author_name','github_login','message','url'];
-    const tsv  = [cols.join('\t'), ...rows.map(r => cols.map(k => r[k] || '').join('\t'))].join('\n');
-    navigator.clipboard.writeText(tsv)
-      .then(() => setStatus('Table copied to clipboard as TSV — paste directly into Excel or Google Sheets.', 'ok'))
-      .catch(() => setStatus('Clipboard copy failed. Try a different browser.', 'err'));
-  }
-
-  function download(content, filename, type) {
-    const blob = new Blob([content], { type });
-    const a    = document.createElement('a');
-    a.href     = URL.createObjectURL(blob);
+  function dl(content, filename, type) {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([content], {type}));
     a.download = filename;
     document.body.appendChild(a);
     a.click();
